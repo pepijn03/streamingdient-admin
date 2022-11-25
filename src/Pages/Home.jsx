@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import Grid from "@mui/material/Grid";
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
+import EditFilm from "../Components/EditFilm";
 
 
 const FilmOverview= () => {
@@ -19,7 +20,7 @@ const FilmOverview= () => {
     },[])
 
     const Delete=(id)=> {
-        fetch("http://localhost:8080/films/" + id + "/delete/add", {
+        fetch("http://localhost:8080/films/" + id + "/delete", {
             method: "DELETE",
           }).then(()=>{
             console.log("film deleted")
@@ -37,7 +38,7 @@ const FilmOverview= () => {
 
                                     <div>{film.name} </div> <br/>
                                     <Button style={{ margin:'5px'}} variant="contained"><Link to={`../film/${film.id}`}> view comments </Link></Button><br/>
-                                    <Button style={{ margin:'5px'}} variant="contained"> edit details </Button><br/>
+                                    <EditFilm filmData={film}/><br/>
                                     <Button onClick={Delete(film.id)} style={{ margin:'5px'}} variant="contained" color="error"> delete film </Button><br/>
                             </Paper>
                         </Grid>
