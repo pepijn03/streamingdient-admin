@@ -14,28 +14,27 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
-const EditFilm = (props) => {
+const AddFilm = (props) => {
     const [open, setOpen] = React.useState(false);
 
 
-    const [id] = React.useState(props.filmData.id)
-    const [name, setName] = React.useState(props.filmData.name)
-    const [description, setDesc] = React.useState(props.filmData.description)
-    const [length, setLength] = React.useState(props.filmData.length)
-    const [date, setDate] = React.useState(dayjs(props.filmData.releaseDate));
-    const [ageRestriction, setAgeRestriction] = React.useState(props.filmData.ageRestriction)
+    const [name, setName] = React.useState('')
+    const [description, setDesc] = React.useState('')
+    const [length, setLength] = React.useState('')
+    const [date, setDate] = React.useState(dayjs(''));
+    const [ageRestriction, setAgeRestriction] = React.useState('')
 
 
     const handleClick=(e)=> {
         e.preventDefault()
-        const film = {id, name, description, length, ageRestriction}
+        const film = {name, description, length, ageRestriction}
         console.log(film)
-        fetch("http://localhost:8080/films/update",{
-            method:"PUT",
+        fetch("http://localhost:8080/films/add",{
+            method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(film)}
         ).then(()=>{
-            console.log("film edited")
+            console.log("film added")
             handleClose()
         })
     }
@@ -53,7 +52,7 @@ const EditFilm = (props) => {
     return (
         <div>
             <Button variant="contained" onClick={handleClickOpen}>
-                edit film
+                add film
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>edit film</DialogTitle>
@@ -67,7 +66,7 @@ const EditFilm = (props) => {
                         type="text"
                         fullWidth
                         variant="standard"
-                        defaultValue={props.filmData.name}
+                        defaultValue={''}
                         onChange={(e)=>setName(e.target.value)}
                     />
 
@@ -78,7 +77,7 @@ const EditFilm = (props) => {
                         id="description"
                         label="description"
                         type="text"
-                        defaultValue={props.filmData.description}
+                        defaultValue={''}
                         fullWidth
                         multiline
                         maxRows={4}
@@ -94,7 +93,7 @@ const EditFilm = (props) => {
                         type="number"
                         fullWidth
                         variant="standard"
-                        defaultValue={props.filmData.length}
+                        defaultValue={''}
                         onChange={(e)=>setLength(e.target.value)}
                     />
 
@@ -117,7 +116,7 @@ const EditFilm = (props) => {
                         type="number"
                         fullWidth
                         variant="standard"
-                        defaultValue={props.filmData.ageRestriction}
+                        defaultValue={''}
                         onChange={(e)=>setAgeRestriction(e.target.value)}
                     />
 
@@ -132,4 +131,4 @@ const EditFilm = (props) => {
     );
 }
 
-export default EditFilm;
+export default AddFilm;

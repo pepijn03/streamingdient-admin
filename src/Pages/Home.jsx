@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import EditFilm from "../Components/EditFilm";
+import AddFilm from "../Components/AddFilm";
 
 
 const FilmOverview= () => {
@@ -32,6 +33,7 @@ const FilmOverview= () => {
 
         <Container >
             <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 4, md: 6 }}>
+
                 {Films.map((film)=>(
                         <Grid item xs={3}>
                             <Paper elevation={6} style={{margin:"10px", padding:"15px", textAlign:";left"}} key={film.id}>
