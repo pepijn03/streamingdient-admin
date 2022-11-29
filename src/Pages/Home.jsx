@@ -41,7 +41,7 @@ const FilmOverview= () => {
                                     <div>{film.name} </div> <br/>
                                     <Button style={{ margin:'5px'}} variant="contained"><Link to={`../film/${film.id}`}> view comments </Link></Button><br/>
                                     <EditFilm filmData={film}/><br/>
-                                    <Button onClick={Delete(film.id)} style={{ margin:'5px'}} variant="contained" color="error"> delete film </Button><br/>
+                                    <Button onClick={() => Delete(film.id)} style={{ margin:'5px'}} variant="contained" color="error"> delete film </Button><br/>
                             </Paper>
                         </Grid>
                     )
