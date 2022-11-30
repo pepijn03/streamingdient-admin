@@ -5,6 +5,13 @@ import {useState, memo } from "react";
 
 const CommentView = (props) =>{
 
+    const Delete=(id)=> {
+        fetch("http://localhost:8080/comments/" + id + "/delete", {
+            method: "DELETE",
+        }).then(()=>{
+            console.log("comment deleted")
+        })
+    }
 
     if(props.comments.length === 0){
         return(
@@ -23,7 +30,7 @@ const CommentView = (props) =>{
                 {props.comments?.map((comment)=>(
                     <li key={comment.id}>
                         {comment.text}
-                        {comment.likes}
+                        <Button onClick={() => Delete(comment.id)} style={{ margin:'5px'}} variant="contained" color="error"> delete comment </Button><br/>
                     </li>
                 ))}
                 <div >
